@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--TODO: Change to absolute layout-->
+<Grid xmlns="http://xamarin.com/schemas/2014/forms"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	  xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+	  x:Class="SectionIndexing.RatingView">
+	<ff:CachedImage HorizontalOptions="Center"
+					WidthRequest="100"
+					Aspect="AspectFit"
+					Source="star_off.png"
+					DownsampleToViewSize="True"
+					DownsampleUseDipUnits="True" />
+	<StackLayout x:Name="RateStar"
+					Orientation="Horizontal"
+					HorizontalOptions="Center"
+					WidthRequest="100">
+		<ff:CachedImage x:Name="rate"
+						WidthRequest="100"
+						Aspect="AspectFit"
+						Source="star_2.png"
+						DownsampleToViewSize="True"
+						DownsampleUseDipUnits="True" />
+	</StackLayout>
+</Grid>

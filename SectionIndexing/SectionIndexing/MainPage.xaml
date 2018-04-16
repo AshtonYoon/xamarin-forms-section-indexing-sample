@@ -1,18 +1,73 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
-             x:Class="SectionIndexing.MainPage">
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+			 xmlns:local="clr-namespace:SectionIndexing"
+			 xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+			 x:Class="SectionIndexing.MainPage">
     <ContentPage.Content>
         <ListView x:Name="RandomStringsList"
                   IsGroupingEnabled="True"
+				  CachingStrategy="RecycleElement"
                   GroupDisplayBinding="{Binding Key}"
                   GroupShortNameBinding="{Binding Key}"
-                  android:ListView.IsFastScrollEnabled="True" >
+                  android:ListView.IsFastScrollEnabled="True" 
+				  BackgroundColor="LimeGreen">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding}" />
-                </DataTemplate>
+					<ViewCell>
+						<Grid x:Name="container"
+							  HeightRequest="40"
+							  CompressedLayout.IsHeadless="true">
+							<ff:CachedImage x:Name="image"
+											HorizontalOptions="Start"
+											VerticalOptions="Center"
+											WidthRequest="35"
+											HeightRequest="35" />
+							<Label x:Name="trackIndexLabel"
+								   HorizontalOptions="Start"
+								   VerticalOptions="Center"
+								   TranslationX="18" />
+							<StackLayout x:Name="titleContainer"
+										 VerticalOptions="Start"
+										 HorizontalOptions="Start"
+										 HeightRequest="20"
+										 Orientation="Horizontal"
+										 Spacing="3"
+										 TranslationX="40">
+								<Label x:Name="textLabel"
+									   Text="{Binding .}"
+									   FontSize="15" />
+								<ff:CachedImage Source="tidal_mqa.png" />
+							</StackLayout>
+							<Label x:Name="detailLabel"
+								   Text="{Binding .}"
+								   HorizontalOptions="Start"
+								   VerticalOptions="End"
+								   HeightRequest="20"
+								   FontSize="14"
+								   LineBreakMode="TailTruncation"
+								   TranslationX="40" />
+							<ff:CachedImage HorizontalOptions="End"
+											WidthRequest="100"
+											Aspect="AspectFit"
+											Source="star_2.png"
+											DownsampleToViewSize="True"
+											DownsampleUseDipUnits="True" />
+							<Label x:Name="durationLabel"
+								   Text="3:31"
+								   FontSize="Small"
+								   HorizontalTextAlignment="End"
+								   VerticalOptions="End"
+								   HorizontalOptions="End"
+								   TranslationX="-40" />
+							<ff:CachedImage x:Name="favoriteImage"
+											VerticalOptions="Center"
+											HorizontalOptions="End"
+											Source="rating_melon.png" />
+						</Grid>
+					</ViewCell>
+				</DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
     </ContentPage.Content>

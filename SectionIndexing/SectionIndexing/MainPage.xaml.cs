@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace SectionIndexing
@@ -20,14 +21,27 @@ namespace SectionIndexing
         {
             InitializeComponent();
 
-            var source = new List<string>();
-            for (int count = 200; count > 0; --count)
-            {
-                source.Add(RandomString.Generate(10));
-            }
+            //var source = new List<string>();
+            //for (int count = 20000000; count > 0; --count)
+            //{
+            //    source.Add(RandomString.Generate(10));
+            //}
 
-            RandomStringsList.ItemsSource = new List<IGrouping<string, string>>(
-                source.OrderBy(x => x).GroupBy(x => x[0].ToString().ToUpper()));
+            Task.Run(() =>
+            {
+                var source = Enumerable.Range(0, 100000).Select(x => x.ToString()).ToArray();
+
+                var templatedSource = new List<IGrouping<string, string>>(
+                    source.OrderBy(x => x).GroupBy(x => x[0].ToString().ToUpper()));
+
+                return templatedSource;
+            }).ContinueWith(task =>
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    RandomStringsList.ItemsSource = task.Result;
+                });
+            });
         }
     }
 }
