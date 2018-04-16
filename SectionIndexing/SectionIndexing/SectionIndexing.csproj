@@ -38,6 +38,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="IOrderable.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -45,6 +46,7 @@
     <Compile Include="RatingView.xaml.cs">
       <DependentUpon>RatingView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Sorting.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MainPage.xaml">
